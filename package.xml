@@ -26,7 +26,8 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-   Added LICENSE. Fixed RPM build for 64bit.
+   Added code to support API for PHP 7.x
+   Updated build scripts, to support 64bit centos
  </notes>
  <contents>
   <dir name="/">
