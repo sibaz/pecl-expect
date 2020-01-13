@@ -9,9 +9,9 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <description>This extension allows to interact with processes through PTY, using expect library.
  </description>
  <lead>
-  <name>Michael Spector</name>
-  <user>michael</user>
-  <email>michael@php.net</email>
+  <name>Simon Bazley</name>
+  <user>sibaz</user>
+  <email>sibaz@sibaz.com</email>
   <active>yes</active>
  </lead>
  <date>2020-01-13</date>
