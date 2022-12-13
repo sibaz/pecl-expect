@@ -318,7 +318,7 @@ PHP_FUNCTION(expect_expectl)
 	
 	if (ZEND_NUM_ARGS() < 2 || ZEND_NUM_ARGS() > 3) { WRONG_PARAM_COUNT; }
 
-	if (zend_parse_parameters (ZEND_NUM_ARGS() TSRMLS_CC, "ra|z", &z_stream, &z_cases, &z_match) == FAILURE) {
+	if (zend_parse_parameters (ZEND_NUM_ARGS() TSRMLS_CC, "ra|z/", &z_stream, &z_cases, &z_match) == FAILURE) {
 		return;
 	}
 
