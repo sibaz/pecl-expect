@@ -1,6 +1,6 @@
 /*
   +----------------------------------------------------------------------+
-  | PHP Version 5 and 7                                                  |
+  | PHP Version 5, 7 and 8                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 1997-2004 The PHP Group                                |
   +----------------------------------------------------------------------+
@@ -37,7 +37,7 @@
 extern zend_module_entry expect_module_entry;
 #define phpext_expect_ptr &expect_module_entry
 
-#define PHP_EXPECT_VERSION "0.3.4"
+#define PHP_EXPECT_VERSION "0.4.0"
 
 #ifdef PHP_WIN32
 #define PHP_EXPECT_API __declspec(dllexport)
@@ -68,6 +68,18 @@ ZEND_END_MODULE_GLOBALS(expect)
 #include "TSRM.h"
 #endif /* ZTS */
 
+
+#if ZEND_MODULE_API_NO >= 20190128
+#ifndef TSRMLS_CC
+#define TSRMLS_CC
+#endif
+#ifndef TSRMLS_DC
+#define TSRMLS_DC
+#endif
+#ifndef TSRMLS_FETCH
+#define TSRMLS_FETCH()
+#endif
+#endif
 #endif /* PHP_EXPECT_H */
 
 /*
