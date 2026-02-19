@@ -309,12 +309,13 @@ PHP_FUNCTION(expect_expectl)
 	struct exp_case *ecases, *ecases_ptr, matchedcase;
 #if PHP_MAJOR_VERSION >= 7
     zval *z_stream, *z_cases, *z_match=NULL, *z_case, *z_value;
+	zend_ulong key;
 #else
 	zval *z_stream, *z_cases, *z_match=NULL, **z_case, **z_value;
+	ulong key;
 #endif
 	php_stream *stream;
 	int fd, argc;
-	ulong key;
 	
 	if (ZEND_NUM_ARGS() < 2 || ZEND_NUM_ARGS() > 3) { WRONG_PARAM_COUNT; }
 
@@ -452,11 +453,15 @@ PHP_FUNCTION(expect_expectl)
 		if (z_match && exp_match && exp_match_len > 0) {
 			char *tmp = (char *)emalloc (sizeof(char) * (exp_match_len + 1));
 			strlcpy (tmp, exp_match, exp_match_len + 1);
-#if PHP_MAJOR_VERSION >= 7
+#if PHP_MAJOR_VERSION > 7 || (PHP_MAJOR_VERSION == 7 && PHP_MINOR_VERSION >= 4)
             z_match = zend_try_array_init(z_match);
-			if (!z_match) {
-				return;
-			}
+            if (!z_match) {
+                return;
+            }
+            add_index_string(z_match, 0, tmp);
+#elif PHP_MAJOR_VERSION >= 7
+            zval_dtor(z_match);
+            array_init(z_match);
             add_index_string(z_match, 0, tmp);
 #else
 			zval_dtor (z_match);
